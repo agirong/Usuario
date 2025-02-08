@@ -6,17 +6,12 @@ namespace Usuario.WebApi.Entities;
 
 public partial class ModelContext : DbContext
 {
-    public ModelContext()
-    {
-    }
-
     public ModelContext(DbContextOptions<ModelContext> options)
         : base(options)
     {
     }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -31,6 +26,7 @@ public partial class ModelContext : DbContext
             entity.ToTable("USUARIO");
 
             entity.Property(e => e.Idusuario)
+                .ValueGeneratedOnAdd()
                 .HasColumnType("NUMBER")
                 .HasColumnName("IDUSUARIO");
             entity.Property(e => e.Apellido)
@@ -53,6 +49,7 @@ public partial class ModelContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("NOMBRE");
         });
+        modelBuilder.HasSequence("USUARIO_SEQ");
 
         OnModelCreatingPartial(modelBuilder);
     }
