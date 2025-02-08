@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Usuario.WebApi.Entities;
 
-public partial class ModelContext : DbContext
+public partial class ApiContext : DbContext
 {
-    public ModelContext(DbContextOptions<ModelContext> options)
+    public ApiContext(DbContextOptions<ApiContext> options)
         : base(options)
     {
     }
