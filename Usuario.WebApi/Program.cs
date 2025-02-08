@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Usuario.WebApi.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<ModelContext>(options => 
+    options.UseOracle(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 
 // Add services to the container.
 
